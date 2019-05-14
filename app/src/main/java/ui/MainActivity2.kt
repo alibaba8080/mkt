@@ -5,15 +5,23 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
-
+import basebata.dao.User
+import basebata.dao.UserDatabase
+import basebata.http.Api
+import basebata.http.RetorfitClient
+import basebata.http.RxRequest
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import java.util.*
 
 /**
 ----------------------------------------------------------------------------------------------
 
- *项目: Koltlin1      habit.mvvm.koltlin1
+ *项目: Koltlin1      habit.koltlin1
  *创建: panshengtao  邮箱：1274218999@lecent.com
  *时间: 2019年05月06日 11:39 AM
 
@@ -25,24 +33,44 @@ import android.widget.Toast
 @SuppressLint("NewApi")
 class MainActivity2 : AppCompatActivity() {
 
+    val handler = Handler() {
 
+        if (it.what == 1) {
+
+
+        }
+
+        false
+    }
     var recyclerView: RecyclerView? = null
-    var mDatas = ArrayList<String>()
+    var mDatas = ArrayList<User>()
     var recycleAdapter: RecycleAdapter? = null
     val recyclerScroll = RecyclerScroll()
-    var autoCount=0
-    lateinit var context:Context
+    var autoCount = 0
+    var loading = false
+
+
+    lateinit var context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(habit.mvvm.koltlin1.R.layout.activity_main2)
-        context=this.applicationContext
-        recyclerView = findViewById(habit.mvvm.koltlin1.R.id.recycleList)
-        recyclerView?.layoutManager = LinearLayoutManager(this)
+        setContentView(R.layout.activity_main2)
+        context = this.applicationContext
+        recyclerView = findViewById(R.id.recycleList)
+
+        recyclerView?.layoutManager = GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false)
         recyclerView?.setOnScrollListener(recyclerScroll)
 
         recycleAdapter = RecycleAdapter(mDatas)
         recyclerView?.adapter = recycleAdapter
+
         loadMoreDate()
+        val api = RetorfitClient.getInstance()!!.create(Api::class.java)
+
+        RxRequest.request(api.searchMoviesAsync("a",1),{
+
+            Toast.makeText(context, ""+it.results.size, Toast.LENGTH_SHORT).show()
+
+        })
     }
 
 
@@ -57,12 +85,16 @@ class MainActivity2 : AppCompatActivity() {
                 val totalItemCount = mLinearLayoutManager.getItemCount()
                 val pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition()
 
-                val loading = false
                 if (!loading && visibleItemCount + pastVisiblesItems >= totalItemCount) {
-                    Toast.makeText(context,"正在加载....",Toast.LENGTH_SHORT).show()
-                    Handler().postDelayed({ loadMoreDate() }, 1000)
+                    loading = true
+
+                    Handler().postDelayed({
+                        loadMoreDate()
+                        loading = false
+                    }, 1000)
                 }
             }
+
         }
 
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -71,12 +103,27 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun loadMoreDate() {
-        autoCount+=15
-        for (k in autoCount-15..autoCount) {
-            mDatas.add("12345646---$k")
-        }
-        recycleAdapter?.setData(mDatas)
+
+
+        var room = Observable.create(ObservableOnSubscribe<ArrayList<User>> {
+            var mdata = ArrayList<User>()
+            autoCount = 15
+            for (k in autoCount - 15..autoCount) {
+                var user = User()
+                user.firstName = "--$k"
+                user.lastName = "$k--"
+                UserDatabase.getInstance(this)!!.UserDao().add(user)
+            }
+            mdata = UserDatabase.getInstance(this)!!.UserDao().getAll() as ArrayList<User>
+            it.onNext(mdata)
+            it.onComplete()
+        })
+
+        RxRequest.request(room,{
+            recycleAdapter?.setData(it)
+        })
     }
 
 }

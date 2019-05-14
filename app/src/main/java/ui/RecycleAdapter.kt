@@ -1,12 +1,11 @@
 package ui
 
-import android.support.annotation.NonNull
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import habit.mvvm.koltlin1.R
+import basebata.dao.User
 
 /**
 ----------------------------------------------------------------------------------------------
@@ -20,7 +19,7 @@ import habit.mvvm.koltlin1.R
 --------------------------------------------------------------------------------------------*/
 
 
-class RecycleAdapter(var mDatas: ArrayList<String>) : RecyclerView.Adapter<RecycleAdapter.ViewHolder>() {
+class RecycleAdapter(var mDatas: ArrayList<User>) : RecyclerView.Adapter<RecycleAdapter.ViewHolder>() {
 
     var viewId: Int = R.layout.recyclerview
     override fun getItemViewType(position: Int): Int {
@@ -33,7 +32,7 @@ class RecycleAdapter(var mDatas: ArrayList<String>) : RecyclerView.Adapter<Recyc
         }
     }
 
-    fun setData( mDatas: ArrayList<String>){
+    fun setData( mDatas: ArrayList<User>){
         this.mDatas=mDatas
         notifyDataSetChanged()
     }
@@ -48,7 +47,8 @@ class RecycleAdapter(var mDatas: ArrayList<String>) : RecyclerView.Adapter<Recyc
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        p0.textView?.text = mDatas.get(p1)
+        if(mDatas.size==0)return
+        p0.textView?.text = mDatas.get(p1).uid.toString()
     }
 
     class ViewHolder(itemView: View, p1: Int) : RecyclerView.ViewHolder(itemView) {

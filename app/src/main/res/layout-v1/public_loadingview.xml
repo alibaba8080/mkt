@@ -1,0 +1,67 @@
+<me.goldze.mvvmhabit.widget.LoadingView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LoadingView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E5FFFFFF">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="80dip"
+            android:layout_height="80dip">
+
+            <me.goldze.mvvmhabit.widget.ArcView
+                android:id="@+id/LoadingViewCircle"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                app:arcBorderColor="#eaeff7"
+                app:arcBorderWidth="2.0"
+                app:arcEndAngle="360"
+                app:arcStartAngle="0" />
+
+            <LinearLayout
+                android:id="@+id/LoadingViewImage"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignStart="@+id/LoadingViewCircle"
+                android:layout_alignTop="@+id/LoadingViewCircle"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="52dip"
+                    android:layout_height="52dip"
+                    android:contentDescription="@string/empty"
+                    android:src="@drawable/ic_launcher_background" />
+            </LinearLayout>
+
+            <me.goldze.mvvmhabit.widget.ArcView
+                android:id="@+id/LoadingViewArc"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignStart="@+id/LoadingViewCircle"
+                android:layout_alignTop="@+id/LoadingViewCircle"
+                app:arcBorderColor="#3385FF"
+                app:arcBorderWidth="2.0"
+                app:arcEndAngle="45"
+                app:arcStartAngle="-45" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/LoadingViewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:text="数据加载中..."
+            android:textColor="#DBE3E8"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</me.goldze.mvvmhabit.widget.LoadingView>
