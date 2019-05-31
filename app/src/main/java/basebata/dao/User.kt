@@ -15,14 +15,17 @@ import android.arch.persistence.room.*
 
 
 @Entity(tableName = "user")
-data class User constructor(
+data class User @Ignore constructor(
 
-    @PrimaryKey(autoGenerate = true) var uid: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int = 0,
 
-    @ColumnInfo(name = "first_name") var firstName: String? = null,
+    @ColumnInfo(name = "first_name")
+    var firstName: String? = null,
 
-    @ColumnInfo(name = "last_name") var lastName: String? = null
-){}
+    @ColumnInfo(name = "last_name")
+    var lastName: String? = null
+)
 
 
 
