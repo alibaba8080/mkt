@@ -3,11 +3,18 @@ package ui.indexf
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import basebata.base.BaseFragment
 import basebata.base.BaseViewModel
+import basebata.dao.User
+import basebata.dao.UserDatabase
+import basebata.http.RxRequest
 import com.android.databinding.library.baseAdapters.BR
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
 import ui.R
+import ui.databinding.FragmentTabBar2Binding
 
 /**
 ----------------------------------------------------------------------------------------------
@@ -21,7 +28,7 @@ import ui.R
 --------------------------------------------------------------------------------------------*/
 
 
-class MyFragment : BaseFragment<ui.databinding.FragmentTabBar2Binding, BaseViewModel>() {
+class MyFragment : BaseFragment<FragmentTabBar2Binding, BaseViewModel>() {
 
     override fun initContentView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): Int {
         return R.layout.fragment_tab_bar_2
@@ -32,8 +39,22 @@ class MyFragment : BaseFragment<ui.databinding.FragmentTabBar2Binding, BaseViewM
     }
 
     override fun initParam() {
+        binding.tv.setOnClickListener(View.OnClickListener {
+            var create = Observable.create(ObservableOnSubscribe<Long> {
+                val add = context?.let { it1 -> UserDatabase.getInstance(it1)?.UserDao()?.add(User()) }
+                if (add != null) {
+                    it.onNext(add)
+                    it.onComplete()
+                }
+            })
+            RxRequest.request(create,{
+
+            })
+
+        })
     }
 
     override fun initData() {
+        binding.tv
     }
 }

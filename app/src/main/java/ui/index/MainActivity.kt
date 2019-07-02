@@ -14,6 +14,9 @@ import ui.indexf.MyFragment
 
 @Suppress("UNREACHABLE_CODE")
 class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>(){
+    override fun getLayout(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var mFragments: MutableList<Fragment>? = null
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -14,6 +15,8 @@ import basebata.dao.UserDatabase
 import basebata.http.Api
 import basebata.http.RetorfitClient
 import basebata.http.RxRequest
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import java.util.*
@@ -33,21 +36,19 @@ import java.util.*
 @SuppressLint("NewApi")
 class MainActivity2 : AppCompatActivity() {
 
-    val handler = Handler() {
-
-        if (it.what == 1) {
-
-
-        }
-
-        false
-    }
     var recyclerView: RecyclerView? = null
     var mDatas = ArrayList<User>()
     var recycleAdapter: RecycleAdapter? = null
-    val recyclerScroll = RecyclerScroll()
+//    val recyclerScroll = RecyclerScroll()
     var autoCount = 0
     var loading = false
+
+    val mAdapter = object : BaseQuickAdapter<User, BaseViewHolder>(R.layout.recyclerview) {
+        override fun convert(helper: BaseViewHolder, item: User) {
+            helper.setText(R.id.textv,item.firstName)
+
+        }
+    }
 
 
     lateinit var context: Context
@@ -58,10 +59,12 @@ class MainActivity2 : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycleList)
 
         recyclerView?.layoutManager = GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false)
-        recyclerView?.setOnScrollListener(recyclerScroll)
+//        recyclerView?.setOnScrollListener(recyclerScroll)
 
         recycleAdapter = RecycleAdapter(mDatas)
-        recyclerView?.adapter = recycleAdapter
+        recyclerView?.adapter = mAdapter
+
+
 
         loadMoreDate()
         val api = RetorfitClient.getInstance()!!.create(Api::class.java)
@@ -74,34 +77,35 @@ class MainActivity2 : AppCompatActivity() {
     }
 
 
-    inner class RecyclerScroll : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-            val mLinearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
-            if (dy > 0)
-            //向下滚动
-            {
-                val visibleItemCount = mLinearLayoutManager.getChildCount()
-                val totalItemCount = mLinearLayoutManager.getItemCount()
-                val pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition()
 
-                if (!loading && visibleItemCount + pastVisiblesItems >= totalItemCount) {
-                    loading = true
-
-                    Handler().postDelayed({
-                        loadMoreDate()
-                        loading = false
-                    }, 1000)
-                }
-            }
-
-        }
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-
-        }
-    }
+//    inner class RecyclerScroll : RecyclerView.OnScrollListener() {
+//        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//            super.onScrolled(recyclerView, dx, dy)
+//            val mLinearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+//            if (dy > 0)
+//            //向下滚动
+//            {
+//                val visibleItemCount = mLinearLayoutManager.getChildCount()
+//                val totalItemCount = mLinearLayoutManager.getItemCount()
+//                val pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition()
+//
+//                if (!loading && visibleItemCount + pastVisiblesItems >= totalItemCount) {
+//                    loading = true
+//
+//                    Handler().postDelayed({
+//                        loadMoreDate()
+//                        loading = false
+//                    }, 1000)
+//                }
+//            }
+//
+//        }
+//
+//        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//            super.onScrollStateChanged(recyclerView, newState)
+//
+//        }
+//    }
 
     @SuppressLint("CheckResult")
     private fun loadMoreDate() {

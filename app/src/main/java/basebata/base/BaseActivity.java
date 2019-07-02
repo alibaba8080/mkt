@@ -9,12 +9,18 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+
+import basebata.util.GsonUtils;
+import basebata.util.annotation.AutoArg;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import ui.R;
 import view.LoadingView;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 /**
  * Created by goldze on 2017/6/15.
@@ -26,11 +32,13 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     protected VM viewModel;
     private int viewModelId;
     private LoadingView loadingView;
-
+    private Intent mIntent;
+    private Bundle mBundle = new Bundle();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        injectBundle(getIntent().getExtras());
         //页面接受的参数方法
         initParam();
         //私有的初始化Databinding和ViewModel方法
@@ -88,10 +96,6 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
             binding.setVariable(viewModelId, viewModel);
         }
     }
-
-
-
-
     public void showDialog(String title) {
         if (loadingView.isStarting) {
             return;
@@ -103,30 +107,6 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     public void dismissDialog() {
         loadingView.stopAnimation();
     }
-
-    /**
-     * 跳转页面
-     *
-     * @param clz 所跳转的目的Activity类
-     */
-    public void startActivity(Class<?> clz) {
-        startActivity(new Intent(this, clz));
-    }
-
-    /**
-     * 跳转页面
-     *
-     * @param clz    所跳转的目的Activity类
-     * @param bundle 跳转所携带的信息
-     */
-    public void startActivity(Class<?> clz, Bundle bundle) {
-        Intent intent = new Intent(this, clz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
-    }
-
 
     /**
      * 视图初始化
@@ -174,12 +154,123 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
     /**
      * 创建ViewModel
-     *
      * @param cls
      * @param <T>
      * @return
      */
     public <T extends ViewModel> T createViewModel(FragmentActivity activity, Class<T> cls) {
         return ViewModelProviders.of(activity).get(cls);
+    }
+
+
+    protected abstract int getLayout();
+
+
+
+    public BaseActivity startActivity(Class activity) {
+        mIntent = new Intent(this, activity);
+        return this;
+    }
+
+    public void go() {
+        if (mIntent != null) {
+            mIntent.putExtras(mBundle);
+            startActivity(mIntent);
+        }
+    }
+
+    public void goForResult(int requestCode) {
+        if (mIntent != null) {
+            mIntent.putExtras(mBundle);
+            startActivityForResult(mIntent, requestCode);
+        }
+    }
+
+    public void goSetResult(int resultCode) {
+        mIntent = new Intent();
+        mIntent.putExtras(mBundle);
+        setResult(resultCode, mIntent);
+        finish();
+    }
+
+    public BaseActivity withObject(@Nullable String key, @Nullable Object value) {
+        String json = GsonUtils.toJson(value);
+        mBundle.putString(key, json);
+        return this;
+    }
+
+    public BaseActivity withString(@Nullable String key, @Nullable String value) {
+        mBundle.putString(key, value);
+        return this;
+    }
+
+    public BaseActivity withBoolean(@Nullable String key, boolean value) {
+        mBundle.putBoolean(key, value);
+        return this;
+    }
+
+    public BaseActivity withInt(@Nullable String key, int value) {
+        mBundle.putInt(key, value);
+        return this;
+    }
+
+    public BaseActivity withFloat(@Nullable String key, float value) {
+        mBundle.putFloat(key, value);
+        return this;
+    }
+
+    public BaseActivity withIntegerArrayList(@Nullable String key, @Nullable ArrayList<Integer> value) {
+        mBundle.putIntegerArrayList(key, value);
+        return this;
+    }
+
+    public BaseActivity withStringArrayList(@Nullable String key, @Nullable ArrayList<String> value) {
+        mBundle.putStringArrayList(key, value);
+        return this;
+    }
+
+    /**
+     * TODO Roadmap
+     * <p>
+     * 1. ARoute 跳转
+     * 2. Fragment 替换操作支持 ARoute uri地址
+     */
+
+
+    private void injectBundle(Bundle bundle) {
+        if (bundle != null) {
+            injectBundle(this, bundle);
+        }
+
+    }
+
+    private void injectBundle(Object o, Bundle bundle) {
+        try {
+            Field[] fields = o.getClass().getDeclaredFields();
+            for (Field field : fields) {
+                boolean annotationPresent = field.isAnnotationPresent(AutoArg.class);
+                if (annotationPresent) {
+                    field.setAccessible(true);
+
+                    Object value = bundle.get(field.getName());
+                    if (value instanceof String) {
+                        String str = (String) value;
+                        try {
+                            Object obj = GsonUtils.fromJson(str, field.getType());
+
+                            field.set(o, obj);
+                        } catch (Exception e) {
+                            field.set(o, str);
+                        }
+
+                    } else {
+                        field.set(o, value);
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            Log.e("injectBundleException", e.getMessage());
+        }
     }
 }

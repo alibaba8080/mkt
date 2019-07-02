@@ -9,6 +9,9 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import basebata.dao.User;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import ui.R;
 
 
@@ -24,6 +27,14 @@ public class ArcView extends View {
 	public ArcView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
+
+
+	private BaseQuickAdapter<User, BaseViewHolder> mAdapter=new BaseQuickAdapter<User, BaseViewHolder>(R.layout.recyclerview) {
+		@Override
+		protected void convert(BaseViewHolder helper, User item) {
+
+		}
+	};
 
 	@SuppressLint("Recycle")
 	public ArcView(Context context, AttributeSet attrs) {

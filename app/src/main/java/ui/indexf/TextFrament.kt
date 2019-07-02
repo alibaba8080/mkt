@@ -21,7 +21,7 @@ import ui.R
 --------------------------------------------------------------------------------------------*/
 
 
-class TextFrament :BaseFragment<ViewDataBinding,BaseViewModel>() {
+class TextFrament : BaseFragment<ViewDataBinding, BaseViewModel>() {
     override fun initContentView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): Int {
 
         return R.layout.test

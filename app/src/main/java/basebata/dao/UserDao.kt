@@ -28,7 +28,7 @@ interface UserDao {
     fun findByName(first: String, last: String): User
 
     @Insert
-    fun add(user:User)
+    fun add(user:User):Long
 
     @Delete
     fun deleteUser(user: User)
