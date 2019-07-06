@@ -9,7 +9,6 @@ import basebata.dao.User
 import basebata.dao.UserDatabase
 import basebata.http.RxRequest
 import com.android.databinding.library.baseAdapters.BR
-import com.pst.basebata.base.BaseFragment
 import com.pst.basebata.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe

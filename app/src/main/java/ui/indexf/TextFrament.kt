@@ -4,7 +4,6 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.pst.basebata.base.BaseFragment
 import com.pst.basebata.base.BaseViewModel
 import ui.BR
 import ui.R

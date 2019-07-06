@@ -6,13 +6,17 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.pst.base.R;
 import com.pst.basebata.annotation.AutoArg;
+import com.pst.basebata.util.FragmentUtils;
 import com.pst.basebata.util.GsonUtils;
 import com.pst.basebata.view.LoadingView;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -21,6 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * ----------------------------------------------------------------------------------------------
@@ -35,14 +40,19 @@ import java.util.ArrayList;
  */
 
 
-public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment implements IBaseActivity {
+public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment {
     protected V binding;
     protected VM viewModel;
     private int viewModelId;
-    //    private MaterialDialog dialog;
     private LoadingView loadingView;
     private Intent mIntent;
     private Bundle mBundle = new Bundle();
+    private long lastRefreshTime = new Date().getTime();
+
+    public ImageView mBackImg;
+    public ImageView mImgPicture;
+    public TextView mTitleText;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +61,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
             loadingView = (LoadingView) (binding.getRoot()).findViewById(R.id.LoadingView);
             loadingView.setText("数据加载中...");
         }
+
         return binding.getRoot();
     }
 
@@ -58,8 +69,8 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
      * 注入绑定
      */
     private void initViewDataBinding() {
-        viewModelId = initVariableId();
-        viewModel = initViewModel();
+        viewModelId = getViewModelId();
+        viewModel = getViewModel();
         if (viewModel == null) {
             Class modelClass;
             Type type = getClass().getGenericSuperclass();
@@ -76,6 +87,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         //让ViewModel拥有View的生命周期感应
         getLifecycle().addObserver(viewModel);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -83,10 +95,10 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         //私有的初始化Databinding和ViewModel方法
         initViewDataBinding();
         //页面数据初始化方法
+        initView();
         initData();
-        //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
-        initViewObservable();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -96,6 +108,19 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
             binding.unbind();
         }
     }
+
+    public void showDialog() {
+        if (loadingView != null && !loadingView.isStarting) {
+            loadingView.startAnimation();
+        }
+    }
+
+    public void dismissDialog() {
+        if (loadingView != null && loadingView.isStarting) {
+            loadingView.stopAnimation();
+        }
+    }
+
     /**
      * 创建ViewModel
      *
@@ -112,27 +137,30 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
      *
      * @return 布局layout的id
      */
-    public abstract int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState);
 
-    /**
-     * 初始化ViewModel的id
-     *
-     * @return BR的id
-     */
-    public abstract int initVariableId();
+    private int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return getLayout();
+    }
+
+    public abstract int getLayout();
+
+    public int getViewModelId() {
+        return 0;
+    }
+
+    public abstract void initView();
+
+    public abstract void initData();
 
     /**
      * 初始化ViewModel
      *
      * @return 继承BaseViewModel的ViewModel
      */
-    public VM initViewModel() { return null;}
+    public VM getViewModel() {
+        return null;
+    }
 
-    public abstract void initParam();
-
-    public abstract void initData();
-
-    public  void initViewObservable(){};
 
     public BaseFragment startActivity(Class activity) {
         mIntent = new Intent(getContext(), activity);
@@ -187,6 +215,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
             injectBundle(this, bundle);
         }
     }
+
     private void injectBundle(Object o, Bundle bundle) {
         try {
             Field[] fields = o.getClass().getDeclaredFields();
@@ -217,4 +246,25 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
 //            logw(e.getMessage());
         }
     }
+
+    public void addFragment(@NonNull Fragment fragment, int containerId) {
+        FragmentUtils.add(getFragmentManager(), fragment, containerId, false, true);
+    }
+
+    public void addFragment(@NonNull Fragment fragment, int containerId, boolean isAddStack) {
+        FragmentUtils.add(getFragmentManager(), fragment, containerId, false, isAddStack);
+    }
+
+    public void replace(@NonNull Fragment fragment) {
+        FragmentUtils.replace(FragmentUtils.getTopShow(getFragmentManager()), fragment);
+    }
+
+    public void back() {
+        if (FragmentUtils.getFragments(getFragmentManager()).size()<=1) {
+           getActivity().finish();
+        }else {
+            FragmentUtils.pop(getFragmentManager());
+        }
+    }
+
 }

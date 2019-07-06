@@ -3,7 +3,6 @@ package com.pst.basebata.binding;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import com.pst.basebata.base.BaseFragment;
 
 /**
  * @Description: fragment替换
