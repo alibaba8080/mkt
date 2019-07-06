@@ -9,6 +9,7 @@ import basebata.dao.User
 import basebata.dao.UserDatabase
 import basebata.http.RxRequest
 import com.android.databinding.library.baseAdapters.BR
+import com.pst.basebata.base.BaseFragment
 import com.pst.basebata.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
@@ -28,16 +29,12 @@ import ui.databinding.FragmentTabBar2Binding
 
 
 class MyFragment : BaseFragment<FragmentTabBar2Binding, BaseViewModel>() {
-
-    override fun initContentView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): Int {
+    override fun getLayout(): Int {
         return R.layout.fragment_tab_bar_2
+
     }
 
-    override fun initVariableId(): Int {
-        return BR.viewModel
-    }
-
-    override fun initParam() {
+    override fun initView() {
         binding.tv.setOnClickListener(View.OnClickListener {
             var create = Observable.create(ObservableOnSubscribe<Long> {
                 val add = context?.let { it1 -> UserDatabase.getInstance(it1)?.UserDao()?.add(User()) }
@@ -52,6 +49,7 @@ class MyFragment : BaseFragment<FragmentTabBar2Binding, BaseViewModel>() {
 
         })
     }
+
 
     override fun initData() {
         binding.tv

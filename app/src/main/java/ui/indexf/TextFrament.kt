@@ -4,6 +4,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.pst.basebata.base.BaseFragment
 import com.pst.basebata.base.BaseViewModel
 import ui.BR
 import ui.R
@@ -21,17 +22,15 @@ import ui.R
 
 
 class TextFrament : BaseFragment<ViewDataBinding, BaseViewModel>() {
-    override fun initContentView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): Int {
-
+    override fun getLayout(): Int {
         return R.layout.test
+
     }
 
-    override fun initVariableId(): Int {
-        return BR.viewModel
+    override fun initView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun initParam() {
-    }
 
     override fun initData() {
     }

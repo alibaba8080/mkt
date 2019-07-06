@@ -3,6 +3,7 @@ package ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -76,34 +77,33 @@ class MainActivity2 : AppCompatActivity() {
 
 
 
-//    inner class RecyclerScroll : RecyclerView.OnScrollListener() {
-//        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//            super.onScrolled(recyclerView, dx, dy)
-//            val mLinearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
-//            if (dy > 0)
-//            //向下滚动
-//            {
-//                val visibleItemCount = mLinearLayoutManager.getChildCount()
-//                val totalItemCount = mLinearLayoutManager.getItemCount()
-//                val pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition()
-//
-//                if (!loading && visibleItemCount + pastVisiblesItems >= totalItemCount) {
-//                    loading = true
-//
-//                    Handler().postDelayed({
-//                        loadMoreDate()
-//                        loading = false
-//                    }, 1000)
-//                }
-//            }
-//
-//        }
-//
-//        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//            super.onScrollStateChanged(recyclerView, newState)
-//
-//        }
-//    }
+    inner class RecyclerScroll : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val mLinearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+            if (dy > 0)
+            //向下滚动
+            {
+                val visibleItemCount = mLinearLayoutManager.getChildCount()
+                val totalItemCount = mLinearLayoutManager.getItemCount()
+                val pastVisiblesItems = mLinearLayoutManager.findFirstVisibleItemPosition()
+
+                if (!loading && visibleItemCount + pastVisiblesItems >= totalItemCount) {
+                    loading = true
+                    Handler().postDelayed({
+                        loadMoreDate()
+                        loading = false
+                    }, 1000)
+                }
+            }
+
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+
+        }
+    }
 
     @SuppressLint("CheckResult")
     private fun loadMoreDate() {

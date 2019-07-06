@@ -1,4 +1,4 @@
-<me.goldze.mvvmhabit.widget.LoadingView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.pst.basebata.view.LoadingView.LoadingView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/LoadingView"
     android:layout_width="fill_parent"
@@ -16,7 +16,7 @@
             android:layout_width="80dip"
             android:layout_height="80dip">
 
-            <me.goldze.mvvmhabit.widget.ArcView
+            <com.pst.basebata.view.ArcView
                 android:id="@+id/LoadingViewCircle"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -38,11 +38,11 @@
                 <ImageView
                     android:layout_width="52dip"
                     android:layout_height="52dip"
-                    android:contentDescription="@string/empty"
-                    android:src="@mipmap/wode_select" />
+                    android:contentDescription=""
+                    android:src="@mipmap/ic_back_white" />
             </LinearLayout>
 
-            <me.goldze.mvvmhabit.widget.ArcView
+            <com.pst.basebata.view.ArcView
                 android:id="@+id/LoadingViewArc"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -64,4 +64,4 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-</me.goldze.mvvmhabit.widget.LoadingView>
+</com.pst.basebata.view.LoadingView.LoadingView>

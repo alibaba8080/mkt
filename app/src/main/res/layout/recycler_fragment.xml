@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/backColor"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+        <include
+                layout="@layout/public_myrecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="64dp" />
+
+        <!--&lt;!&ndash; LoadingView控件 &ndash;&gt;-->
+        <!--<include-->
+                <!--layout="@layout/public_loadingview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_marginTop="64dp"-->
+                <!--android:visibility="gone" />-->
+
+
+        <!-- NavigationBar -->
+        <include layout="@layout/public_title_layout" />
+    </RelativeLayout>
+</layout>

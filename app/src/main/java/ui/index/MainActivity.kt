@@ -4,32 +4,33 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import com.android.databinding.library.baseAdapters.BR
+import com.pst.basebata.base.BaseActivity
 import com.pst.basebata.base.BaseViewModel
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener
 import ui.R
+import ui.RecyclerFragment
 import ui.databinding.ActivityMainBinding
 import ui.indexf.MyFragment
 
 
 @Suppress("UNREACHABLE_CODE")
 class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>(){
+    override fun getBRId(): Int {
+
+        return BR.viewModel
+
+    }
+
+    override fun initView() {
+    }
+
     override fun getLayout(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return R.layout.activity_main
+
     }
 
     private var mFragments: MutableList<Fragment>? = null
 
-
-    override fun initContentView(savedInstanceState: Bundle?): Int {
-        return R.layout.activity_main
-    }
-
-    override fun initVariableId(): Int {
-        return BR.viewModel
-    }
-
-    override fun initParam() {
-    }
 
     override fun initData() {
         //初始化Fragment
@@ -40,7 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>(){
 
     private fun initFragment() {
         mFragments = ArrayList()
-        mFragments!!.add(MyFragment())
+        mFragments!!.add(RecyclerFragment())
         mFragments!!.add(MyFragment())
         mFragments!!.add(MyFragment())
         mFragments!!.add(MyFragment())

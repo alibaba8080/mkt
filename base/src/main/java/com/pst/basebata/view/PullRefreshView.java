@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -218,7 +219,7 @@ public class PullRefreshView extends LinearLayout {
         int i = lp.topMargin;
         refreshIndicatorView.setVisibility(View.GONE);
         bar.setVisibility(View.VISIBLE);
-        downTextView.setVisibility(View.GONE);
+        downTextView.setText("正在加载....");
         scroller.startScroll(0, i, 0, 0 - i);
         invalidate();
         if (refreshListener != null) {
@@ -355,7 +356,16 @@ public class PullRefreshView extends LinearLayout {
                     } else {
                         return false;
                     }
-                } else if (childView instanceof ScrollView) {
+                }
+                if (childView instanceof RecyclerView) {
+                    int top = ((RecyclerView) childView).getChildAt(0).getTop();
+                    int pad = ((RecyclerView) childView).getPaddingTop();
+                    if ((Math.abs(top - pad)) < 3 ) {
+                        return true;
+                    } else {
+                        return true;
+                    }
+                }else if (childView instanceof ScrollView) {
                     if (((ScrollView) childView).getScrollY() == 0) {
                         return true;
                     } else {
