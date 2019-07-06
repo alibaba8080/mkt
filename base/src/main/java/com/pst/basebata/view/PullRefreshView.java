@@ -363,7 +363,7 @@ public class PullRefreshView extends LinearLayout {
                     if ((Math.abs(top - pad)) < 3 ) {
                         return true;
                     } else {
-                        return true;
+                        return false;
                     }
                 }else if (childView instanceof ScrollView) {
                     if (((ScrollView) childView).getScrollY() == 0) {

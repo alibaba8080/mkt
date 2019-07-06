@@ -5,13 +5,14 @@
         android:layout_height="wrap_content"
         android:background="@color/blueColor"
         android:orientation="vertical"
+        android:id="@+id/nav_background"
         android:paddingTop="20dip">
 
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="44dp">
         <ImageView
-                android:id="@+id/iv_back"
+                android:id="@+id/nav_goback_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
@@ -19,9 +20,8 @@
                 android:background="?selectableItemBackground"
                 android:padding="12dp"
                 android:src="@mipmap/ic_back_white"/>
-
         <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/nav_title_tv"
                 style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 android:textSize="18sp"/>
 
         <TextView
-                android:id="@+id/tv_right_text"
+                android:id="@+id/nav_right_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -46,12 +46,11 @@
                 android:textSize="18sp"/>
 
         <ImageView
-                android:id="@+id/iv_right_icon"
+                android:id="@+id/nav_right_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="?selectableItemBackground"
                 android:gravity="center"
                 android:padding="12dp"/>
     </RelativeLayout>

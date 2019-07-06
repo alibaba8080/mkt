@@ -12,13 +12,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.pst.base.R;
 import com.pst.basebata.annotation.AutoArg;
 import com.pst.basebata.util.FragmentUtils;
 import com.pst.basebata.util.GsonUtils;
 import com.pst.basebata.view.LoadingView;
+import com.pst.basebata.view.MyRecyclerView;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import java.lang.reflect.Field;
@@ -40,18 +43,21 @@ import java.util.Date;
  */
 
 
-public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment {
+public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel> extends RxFragment implements MyRecyclerView.ScrollListener {
     protected V binding;
     protected VM viewModel;
     private int viewModelId;
     private LoadingView loadingView;
     private Intent mIntent;
     private Bundle mBundle = new Bundle();
-    private long lastRefreshTime = new Date().getTime();
 
-    public ImageView mBackImg;
-    public ImageView mImgPicture;
-    public TextView mTitleText;
+    public LinearLayout mNavBackground;
+    public ImageView mNavGobackBtn;
+    public TextView mNavTitleTv;
+    public TextView mNavRightTv;
+    public ImageView mNavRightIv;
+
+    public MyRecyclerView recyclerView;
 
     @Nullable
     @Override
@@ -62,6 +68,29 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
             loadingView.setText("数据加载中...");
         }
 
+        if ((binding.getRoot()).findViewById(R.id.my_recycler_view)!=null) {
+            recyclerView=binding.getRoot().findViewById(R.id.my_recycler_view);
+            recyclerView.setScrollListener(this);
+        }
+
+        if ((binding.getRoot()).findViewById(R.id.nav_background) != null) {
+            mNavBackground = (LinearLayout) (binding.getRoot()).findViewById(R.id.nav_background);
+        }
+        if ((binding.getRoot()).findViewById(R.id.nav_title_tv) != null) {
+            mNavTitleTv = (TextView) (binding.getRoot()).findViewById(R.id.nav_title_tv);
+        }
+        if ((binding.getRoot()).findViewById(R.id.nav_goback_btn) != null) {
+            mNavGobackBtn = (ImageView)(binding.getRoot()). findViewById(R.id.nav_goback_btn);
+            mNavGobackBtn.setOnClickListener(v->{
+                back();
+            });
+        }
+        if ((binding.getRoot()).findViewById(R.id.nav_right_tv) != null) {
+            mNavRightTv = (TextView)(binding.getRoot()). findViewById(R.id.nav_right_tv);
+        }
+        if ((binding.getRoot()).findViewById(R.id.nav_right_iv) != null) {
+            mNavRightIv = (ImageView) (binding.getRoot()).findViewById(R.id.nav_right_iv);
+        }
         return binding.getRoot();
     }
 
@@ -85,6 +114,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         //关联ViewModel
         binding.setVariable(viewModelId, viewModel);
         //让ViewModel拥有View的生命周期感应
+        binding.setLifecycleOwner(this);
         getLifecycle().addObserver(viewModel);
     }
 
@@ -267,4 +297,18 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         }
     }
 
+    @Override
+    public void startRefresh() {
+
+    }
+
+    @Override
+    public void loadNextPage(int page) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+    }
 }

@@ -1,10 +1,8 @@
 package com.pst.basebata.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -28,16 +26,12 @@ public class MyRecyclerView extends PullRefreshView {
         super(context, attrs);
     }
 
-    public ScrollListener getScrollListener() {
-        return scrollListener;
-    }
-
     public void setScrollListener(ScrollListener scrollListener) {
         this.scrollListener = scrollListener;
     }
 
-    public void setMyAdapter(BaseQuickAdapter baseQuickAdapter) {
-        recyclerView = (RecyclerView) findViewById(R.id.MyRecyclerView);
+    public void setBaseAdapter(BaseQuickAdapter baseQuickAdapter) {
+        recyclerView = (RecyclerView) findViewById(R.id.inner_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(baseQuickAdapter);
 
@@ -56,17 +50,11 @@ public class MyRecyclerView extends PullRefreshView {
                             scrollListener.startRefresh();
                         }
                     }
-                }, 3000);
+                }, 300);
             }
         });
 
-
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -89,7 +77,7 @@ public class MyRecyclerView extends PullRefreshView {
                                     public void run() {
                                         isLoading = false;
                                     }
-                                }, 1000);
+                                }, 200);
                                 scrollListener.loadNextPage(page++);
                             }
                         }

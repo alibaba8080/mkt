@@ -1,11 +1,11 @@
 package ui;
 
-import android.widget.AbsListView;
+import android.os.Handler;
+import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pst.basebata.base.BaseFragment;
 import com.pst.basebata.base.BaseViewModel;
-import com.pst.basebata.view.MyRecyclerView;
 import ui.databinding.RecyclerFragmentBinding;
 
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ import java.util.List;
  * 版本号：1
  */
 public class RecyclerFragment extends BaseFragment<RecyclerFragmentBinding, BaseViewModel> {
+    List<String> stringList;
 
     @Override
     public int getLayout() {
@@ -28,36 +29,50 @@ public class RecyclerFragment extends BaseFragment<RecyclerFragmentBinding, Base
 
     @Override
     public void initView() {
-        List<String> stringList=new ArrayList<>();
+        mNavGobackBtn.setVisibility(View.GONE);
+        mNavTitleTv.setText("HOME");
+        stringList = new ArrayList<>();
         stringList.add("54545");
         stringList.add("54545");
         stringList.add("54545");
         stringList.add("54545");
         stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        stringList.add("54545");
+        recyclerView.setBaseAdapter(mAdaper);
+        mAdaper.replaceData(stringList);
+    }
 
-        MyRecyclerView viewById = binding.getRoot().findViewById(R.id.MyTableView);
-        viewById.setMyAdapter(mAdaper);
-        mAdaper.addData(stringList);
-        mAdaper.addData(stringList);
-        mAdaper.addData(stringList);
-        mAdaper.addData(stringList);
-        viewById.setScrollListener(new MyRecyclerView.ScrollListener() {
+    public void loadNextPage(int page) {
+        showDialog();
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void startRefresh() {
-                mAdaper.replaceData(stringList);
-                viewById.finishRefresh();
-            }
-
-            @Override
-            public void loadNextPage(int page) {
+            public void run() {
                 mAdaper.addData(stringList);
+                recyclerView.finishRefresh();
+                dismissDialog();
             }
+        }, 500);
+    }
 
+    public void startRefresh() {
+        showDialog();
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
+            public void run() {
+                mAdaper.replaceData(stringList);
+                recyclerView.finishRefresh();
+                dismissDialog();
             }
-        });
+        }, 1000);
     }
 
     @Override
@@ -65,10 +80,10 @@ public class RecyclerFragment extends BaseFragment<RecyclerFragmentBinding, Base
 
     }
 
-    BaseQuickAdapter<String, BaseViewHolder> mAdaper=new BaseQuickAdapter<String, BaseViewHolder>(R.layout.recyclerview) {
+    BaseQuickAdapter<String, BaseViewHolder> mAdaper = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.recyclerview) {
         @Override
         protected void convert(BaseViewHolder helper, String item) {
-
+            helper.setText(R.id.textv, "          " + helper.getPosition());
         }
     };
 }

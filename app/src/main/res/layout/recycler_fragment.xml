@@ -16,14 +16,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="64dp" />
 
-        <!--&lt;!&ndash; LoadingView控件 &ndash;&gt;-->
-        <!--<include-->
-                <!--layout="@layout/public_loadingview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginTop="64dp"-->
-                <!--android:visibility="gone" />-->
+        <include
+                layout="@layout/public_loadingview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="64dp"
+                android:visibility="gone" />
 
 
         <!-- NavigationBar -->
