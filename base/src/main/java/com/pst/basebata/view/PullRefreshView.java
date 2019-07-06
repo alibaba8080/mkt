@@ -358,6 +358,9 @@ public class PullRefreshView extends LinearLayout {
                     }
                 }
                 if (childView instanceof RecyclerView) {
+                    if (((RecyclerView) childView).getChildCount()==0){
+                        return true;
+                    }
                     int top = ((RecyclerView) childView).getChildAt(0).getTop();
                     int pad = ((RecyclerView) childView).getPaddingTop();
                     if ((Math.abs(top - pad)) < 3 ) {

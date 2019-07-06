@@ -48,7 +48,7 @@ public class RecyclerFragment extends BaseFragment<RecyclerFragmentBinding, Base
         stringList.add("54545");
         stringList.add("54545");
         recyclerView.setBaseAdapter(mAdaper);
-        mAdaper.replaceData(stringList);
+//        mAdaper.replaceData(stringList);
     }
 
     public void loadNextPage(int page) {
