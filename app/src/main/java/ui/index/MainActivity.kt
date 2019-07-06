@@ -3,9 +3,9 @@ package ui.index
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import basebata.base.BaseActivity
-import basebata.base.BaseViewModel
 import com.android.databinding.library.baseAdapters.BR
+import com.pst.basebata.base.BaseActivity
+import com.pst.basebata.base.BaseViewModel
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener
 import ui.R
 import ui.databinding.ActivityMainBinding

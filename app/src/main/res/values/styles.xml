@@ -8,11 +8,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- 加载中 -->
-    <declare-styleable name="ArcView">
-        <attr name="arcStartAngle" format="float" />
-        <attr name="arcEndAngle" format="float" />
-        <attr name="arcBorderWidth" format="float" />
-        <attr name="arcBorderColor" format="color" />
-    </declare-styleable>
+
 </resources>

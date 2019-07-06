@@ -5,7 +5,7 @@
 
         <variable
                 name="viewModel"
-                type="basebata.base.BaseViewModel"/>
+                type="com.pst.basebata.base.BaseViewModel"/>
     </data>
 
     <LinearLayout

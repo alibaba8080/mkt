@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+00%=FF（不透明）    5%=F2    10%=E5    15%=D8    20%=CC    25%=BF    30%=B2    35%=A5    40%=99    45%=8c    50%=7F   
+55%=72    60%=66    65%=59    70%=4c    75%=3F    80%=33    85%=21    90%=19    95%=0c    100%=00（全透明）
+    -->
+
+    <!--狱务主题色-->
+    <color name="themeColor">#0077EA</color>
+    <color name="themePressColor">#1362c1</color>
+    <color name="themeDisabledColor">#95c3fb</color>
+
+    <!-- 导航NavigationBar颜色 狱务 -->
+    <color name="navigationBarBG">#0077EA</color>
+
+    <!-- 橙色 狱务 -->
+    <color name="orangeColor">#FF7900</color>
+    <color name="orangePressColor">#FF5400</color>
+
+    <!-- 页面背景颜色 狱务 -->
+    <color name="backColor">#f5f6f8</color>
+    <color name="darkBackColor">#EEEEEE</color>
+
+    <!-- 白色线条颜色 -->
+    <color name="whiteLineColor">#19FFFFFF</color>
+
+    <!-- 灰色线条颜色 狱务-->
+    <color name="darkLineColor">#d6d6d6</color>
+    <color name="grayLineColor">#E8E8E8</color>
+    <color name="lightLineColor">#fafafa</color>
+
+    <color name="redLineColor">#F05549</color>
+    <color name="pinkLineColor">#CC7272</color>
+    <color name="blueLineColor">#4DBCE7</color>
+
+    <!-- 表格顶背景颜色 -->
+    <color name="headerBackColor">#F9F9F9</color>
+
+    <!-- 列表选中行背景颜色 -->
+    <color name="selectBackColor">#F4F4F4</color>
+
+    <!-- 普通按钮文字高亮颜色 -->
+    <color name="tintColor">#F05549</color>
+
+    <!-- hint色 狱务 -->
+    <color name="hintColor">#ffd3d3d5</color>
+
+    <!-- 浅灰色 狱务 -->
+    <color name="lightGrayColor">#b0b0b0</color>
+    <color name="lightGrayColorDisabled">#4D595959</color>
+
+    <!-- 搜索框灰色 狱务 -->
+    <color name="searchGrayColor">#EBEBEB</color>
+    <color name="searchLightGrayColor">#E6E6E6</color>
+
+    <!-- 按钮浅灰色 -->
+    <color name="lightGrayButtonColor">#D8D8D8</color>
+
+    <!-- 更浅的灰色 -->
+    <color name="weakGrayColor">#CFCFCF</color>
+
+    <!-- 最浅的灰色 -->
+    <color name="weakestGrayColor">#FAFAFA</color>
+
+    <!-- 深灰色 狱务 -->
+    <color name="darkGrayColor">#585A66</color>
+    <color name="darkGrayColorDisabled">#4D595959</color>
+
+    <!-- 页面黑色 -->
+    <color name="blackColor">#000000</color>
+    <color name="blackColor10">#19000000</color>
+    <color name="blackColor20">#33000000</color>
+    <color name="blackColor40">#66000000</color>
+    <color name="blackColor50">#7F000000</color>
+
+    <!-- 页面红色 狱务 -->
+    <color name="redColor">#f03b43</color>
+
+    <!-- 页面亮红色 狱务-->
+    <color name="lightRedColor">#FC775E</color>
+
+    <!-- 页面蓝色 -->
+    <color name="blueColor">#187DF7</color>
+
+    <!-- 页面淡蓝色 -->
+    <color name="lightBlueColor">#D1E5FD</color>
+    <color name="lightOrangeColor">#ffe2b1</color>
+
+    <!-- 天蓝色 -->
+    <color name="skyblueColor">#018cf7</color>
+
+    <!-- 页面绿色 -->
+    <color name="greenColor">#008F25</color>
+
+    <!-- 页面浅绿色 狱务-->
+    <color name="lightGreenColor">#4BCC73</color>
+
+    <!-- 文本提示文字颜色 -->
+    <color name="placeholderColor">#C7C7CD</color>
+
+    <!-- 页面白色 -->
+    <color name="whiteColor">#FFFFFF</color>
+    <color name="whiteColor10">#19FFFFFF</color>
+    <color name="whiteColor20">#33FFFFFF</color>
+    <color name="whiteColor40">#66FFFFFF</color>
+    <color name="whiteColor80">#CCFFFFFF</color>
+
+    <!-- 页面黄色 狱务-->
+    <color name="yellowColor">#fd9e02</color>
+    <color name="yellowColorDisabled">#f09602</color>
+
+    <!-- 带透明度黄色 -->
+    <color name="yellowColorAlpha">#0FFFFF00</color>
+
+    <!-- TabBar -->
+    <color name="tabBarBackColor">#FFFFFF</color>
+    <color name="tabBarItemPress">#0077EA</color>
+    <color name="tabBarItemNormal">#A5A9BF</color>
+
+    <!-- 按钮颜色 -->
+    <color name="btnRedNormal">#FF745F</color>
+    <color name="btnRedPress">#FF6451</color>
+    <color name="btnRedDisabled">#C4C4C4</color>
+    <color name="btnBlueNormal">#187DF7</color>
+    <color name="btnBluePress">#1362C1</color>
+    <color name="btnBlueDisabled">#19187DF7</color>
+    <color name="btnGrayNormal">#7F7F7F</color>
+    <color name="btnGrayPress">#4b4b4b</color>
+    <color name="btnGrayDisabled">#197F7F7F</color>
+    <color name="btnWhiteNormal">#FFFFFF</color>
+    <color name="btnWhitePress">#FAFAFA</color>
+    <color name="btnWhiteDisabled">#19FFFFFF</color>
+    <color name="btnGreenNormal">#25D366</color>
+    <color name="btnGreenPress">#1A9548</color>
+    <color name="btnGreenDisabled">#4c25D366</color>
+    <color name="btnYellowNormal">#FFAE13</color>
+    <color name="btnYellowPress">#C3850F</color>
+    <color name="btnYellowDisabled">#4cFFAE13</color>
+
+    <!-- 透明颜色 -->
+    <color name="transparent">#00000000</color>
+
+    <!-- 通用颜色 -->
+    <!--点击透明度-->
+    <color name="refreshbg">#E2E7ED</color>
+    <color name="refreshtext">#576C89</color>
+    <color name="drophud">#000000</color>
+    <color name="drophudfail">#FFFFFF</color>
+    <color name="drophudsuccess">#FFFFFF</color>
+    <color name="tablebackcolor">#FFFFFF</color>
+    <color name="listline">#F1F0ED</color>
+</resources>

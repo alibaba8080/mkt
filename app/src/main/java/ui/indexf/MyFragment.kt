@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import basebata.base.BaseFragment
-import basebata.base.BaseViewModel
 import basebata.dao.User
 import basebata.dao.UserDatabase
 import basebata.http.RxRequest
 import com.android.databinding.library.baseAdapters.BR
+import com.pst.basebata.base.BaseFragment
+import com.pst.basebata.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import ui.R

@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="basebata.base.BaseViewModel" />
+        <import type="com.pst.basebata.base.BaseViewModel" />
 
         <variable
                 name="viewModel"
