@@ -51,11 +51,13 @@ public class ViewBindingAdapter {
                     .into(imageView);
         }
     }
-
     @BindingAdapter("htmlText")
     public static void htmlText(TextView view, String htmlText) {
-        view.setText(Html.fromHtml(htmlText));
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            view.setText( Html.fromHtml(htmlText,Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            view.setText( Html.fromHtml(htmlText));
+        }
     }
-
 
 }

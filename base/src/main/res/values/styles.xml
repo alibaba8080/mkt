@@ -7,4 +7,9 @@
         <attr name="arcBorderWidth" format="float" />
         <attr name="arcBorderColor" format="color" />
     </declare-styleable>
+
+    <style name="popuwindow_middle_style">
+        <item name="android:windowEnterAnimation">@anim/popu_middle_in</item>
+        <item name="android:windowExitAnimation">@anim/popu_middle_out</item>
+    </style>
 </resources>
