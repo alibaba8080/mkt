@@ -138,32 +138,28 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
             binding.setVariable(viewModelId, viewModel);
         }
     }
-
     public void showDialog() {
-        if (loadingView != null && !loadingView.isStarting) {
+        if (loadingView!=null&&!loadingView.isStarting) {
             loadingView.startAnimation();
         }
     }
 
     public void dismissDialog() {
-        if (loadingView != null && loadingView.isStarting) {
+        if (loadingView!=null&&loadingView.isStarting) {
             loadingView.stopAnimation();
         }
     }
 
 
+
     protected abstract int getLayout();
-
     protected abstract int getBRId();
-
-    protected abstract void initView();
-
-    protected abstract void initData();
+    protected abstract void initView() ;
+    protected abstract void initData() ;
 
 
     /**
      * 创建ViewModel
-     *
      * @param cls
      * @param <T>
      * @return
@@ -219,7 +215,10 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         mBundle.putInt(key, value);
         return this;
     }
-
+    public BaseActivity withDouble(@Nullable String key, @Nullable Double value) {
+        mBundle.putDouble(key, value);
+        return this;
+    }
     public BaseActivity withFloat(@Nullable String key, float value) {
         mBundle.putFloat(key, value);
         return this;
@@ -270,7 +269,6 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
             Log.e("injectBundleException", e.getMessage());
         }
     }
-
     public void addFragment(@NonNull Fragment fragment, int containerId) {
         fragment.setArguments(getIntent().getExtras());
         FragmentUtils.add(getSupportFragmentManager(), fragment, containerId, false, true);
@@ -295,15 +293,18 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         try {
             // 双击退出
             if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-                if (FragmentUtils.getFragments(getSupportFragmentManager()).size() == 1) {
+                if (FragmentUtils.getFragments(getSupportFragmentManager()).size()<=1) {
                     finish();
-                    return true;
+                }else {
+                    back();
                 }
+                return true;
             }
         } catch (Exception ignored) {
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown( keyCode, event );
     }
+
 
     private void hideStatusBar() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);

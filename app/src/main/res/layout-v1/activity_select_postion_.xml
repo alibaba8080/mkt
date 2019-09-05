@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <com.amap.api.maps2d.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/map_liearlayoout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/map_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="贵阳市"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/map_address"
+                android:layout_width="250dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:maxLines="2"
+                android:text="贵州省贵阳市观山湖区都匀路85号靠近金利大厦(百挑路)"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <include layout="@layout/public_toolbar" />
+
+    </RelativeLayout>
+</layout>
+

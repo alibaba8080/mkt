@@ -1,4 +1,4 @@
-package com.pst.basebata.util;
+package util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.pst.basebata.util;
+package util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

@@ -1,4 +1,4 @@
-package com.pst.basebata.util;
+package util;
 
 import android.content.Context;
 import android.content.Intent;

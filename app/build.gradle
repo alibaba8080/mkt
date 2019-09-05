@@ -96,4 +96,7 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'
     implementation project(path: ':base')
 
+    //高德地图
+    implementation files('libs/AMap_Location_V4.6.0_20190423.jar')
+    implementation files('libs/AMap_Search_V6.9.0_20190530.jar')
 }
