@@ -59,7 +59,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //隐藏状态栏 设置视图
-        hideStatusBar();
+//        hideStatusBar();
         //私有的初始化Databinding和ViewModel方法
         injectBundle(getIntent().getExtras());
         initViewDataBinding(savedInstanceState);

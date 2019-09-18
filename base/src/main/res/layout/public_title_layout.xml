@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.AppBarLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blueColor"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+<android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
         android:id="@+id/nav_background"
-        android:paddingTop="20dip">
-
+        android:background="@color/colorPrimary"
+        android:layout_height="match_parent" >
     <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="44dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ImageView
                 android:id="@+id/nav_goback_btn"
                 android:layout_width="wrap_content"
@@ -22,7 +22,6 @@
                 android:src="@mipmap/ic_back_white"/>
         <TextView
                 android:id="@+id/nav_title_tv"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -30,7 +29,7 @@
                 android:gravity="center"
                 android:maxEms="12"
                 android:singleLine="true"
-                android:textColor="@color/whiteColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"/>
 
         <TextView
@@ -42,7 +41,7 @@
                 android:background="?selectableItemBackground"
                 android:gravity="center"
                 android:padding="12dp"
-                android:textColor="@color/whiteColor"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="18sp"/>
 
         <ImageView
@@ -54,5 +53,7 @@
                 android:gravity="center"
                 android:padding="12dp"/>
     </RelativeLayout>
-</LinearLayout>
+</android.support.v7.widget.Toolbar>
+</android.support.design.widget.AppBarLayout>
+
 

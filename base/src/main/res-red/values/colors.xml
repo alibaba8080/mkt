@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Appbar背景色-->
+    <color name="colorPrimary_red">#F44336</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark_red">#B43228</color>
+    <!--ToolBar上的Title颜色-->
+    <color name="textColorPrimary_red">#fff</color>
+    <!--控制各个控件被选中时的颜色-->
+    <color name="colorAccent_red">#F44336</color>
+</resources>

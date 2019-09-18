@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "habit.koltlin1"
+        applicationId "com.pst.mkt"
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
@@ -95,8 +95,15 @@ dependencies {
     //上拉刷新 下拉加载
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-20'
     implementation project(path: ':base')
-
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     //高德地图
     implementation files('libs/AMap_Location_V4.6.0_20190423.jar')
     implementation files('libs/AMap_Search_V6.9.0_20190530.jar')
+
+    implementation 'skin.support:skin-support:3.1.0-beta1'
+    // skin-support 基础控件支持
+    implementation 'skin.support:skin-support-design:3.1.0-beta1'
+    // skin-support-design material design 控件支持[可选]
+    implementation 'skin.support:skin-support-cardview:3.1.0-beta1'
+    // skin-support-cardview CardView 控件支持[可选]
 }

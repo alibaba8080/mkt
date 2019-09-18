@@ -39,7 +39,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-        <include layout="@layout/public_toolbar" />
+        <include layout="@layout/public_title_layout" />
 
     </RelativeLayout>
 </layout>

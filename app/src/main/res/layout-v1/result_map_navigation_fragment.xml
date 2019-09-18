@@ -47,7 +47,7 @@
             android:layout_alignParentBottom="true"
             android:paddingBottom="45dp"
             android:src="@mipmap/result_nap_navigation_btn_ic" />
-        <include layout="@layout/public_toolbar" />
+        <include layout="@layout/public_title_layout" />
     </RelativeLayout>
 </layout>
 

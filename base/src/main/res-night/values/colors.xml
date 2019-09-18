@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Appbar背景色-->
+    <color name="colorPrimary_night">#455a64</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark_night">#41545E</color>
+    <!--ToolBar上的Title颜色-->
+    <color name="textColorPrimary_night">#fff</color>
+    <!--控制各个控件被选中时的颜色-->
+    <color name="colorAccent_night">#607d8b</color>
+</resources>
