@@ -35,11 +35,14 @@
                     android:layout_height="1dp"
                     android:background="#4BB1B1B1"/>
 
-        <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
+            <android.support.design.widget.BottomNavigationView
                 android:id="@+id/pager_bottom_tab"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                app:elevation="8dp"/>
+                android:layout_height="wrap_content"
+                app:itemIconTint="@color/selector_bottom_primary_color"
+                app:itemTextColor="@color/selector_bottom_primary_color"
+                app:menu="@menu/bottom_navigation_main"
+                />
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton

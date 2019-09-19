@@ -9,6 +9,8 @@
 
     <!--控制各个控件被选中时的颜色-->
     <color name="colorAccent">#40AAB8</color>
+
+    <color name="textColorSecondary">#cccccc</color>
 //==================================================
     <!--页面背景色-->
     <color name="windowBackground">#0097a7</color>

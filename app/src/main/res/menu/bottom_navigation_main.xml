@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/yingyong"
+            android:icon="@mipmap/yingyong"
+            android:title="应用"/>
+    <item
+            android:id="@+id/gongzuo"
+            android:icon="@mipmap/huanzhe"
+            android:title="工作" />
+    <item
+            android:id="@+id/empty"
+            android:enabled="true"
+            android:title="" />
+    <item
+            android:id="@+id/xiaoxi"
+            android:icon="@mipmap/xiaoxi_select"
+            android:title="消息" />
+    <item
+            android:id="@+id/wode"
+            android:icon="@mipmap/wode_select"
+            android:title="我的"
+             />
+
+</menu>

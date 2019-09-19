@@ -62,23 +62,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>(){
     }
 
     private fun initBottomTab() {
-        val navigationController = binding.pagerBottomTab.material()
-            .addItem(R.mipmap.yingyong, "应用")
-            .addItem(R.mipmap.huanzhe, "工作")
-            .addItem(R.mipmap.ic_back_white, "")
-            .addItem(R.mipmap.xiaoxi_select, "消息")
-            .addItem(R.mipmap.wode_select, "我的")
-            .setDefaultColor(Color.GRAY)
-            .build()
-        //底部按钮的点击事件监听
-        navigationController.addTabItemSelectedListener(object : OnTabItemSelectedListener {
-            override fun onSelected(index: Int, old: Int) {
-                if (index==2)return;
-                swithFragment(index)
+        binding.pagerBottomTab.labelVisibilityMode=1
+        binding.pagerBottomTab.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.yingyong->{swithFragment(0)  }
+                R.id.gongzuo->{swithFragment(1) }
+                R.id.xiaoxi->{swithFragment(3) }
+                R.id.wode->{swithFragment(4) }
+                R.id.empty->return@setOnNavigationItemSelectedListener false
             }
-
-            override fun onRepeat(index: Int) {}
-        })
+            true
+        }
     }
 
     private fun swithFragment(id: Int) {
