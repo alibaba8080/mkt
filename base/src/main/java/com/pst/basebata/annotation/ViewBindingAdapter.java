@@ -12,29 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 public class ViewBindingAdapter {
 
-
-//    /**
-//     * 设置上拉加载  下拉刷新
-//     * @param layout
-//     * @param onRefreshCommand
-//     * @param onLoadMoreCommand
-//     */
-//    @BindingAdapter(value = {"android:onRefreshCommand", "android:onLoadMoreCommand"}, requireAll = false)
-//    public static void onRefreshAndLoadMoreCommands(SmartRefreshLayout layout, SwipeRefreshLayout.OnRefreshListener onRefreshCommand, OnLoadMoreListener onLoadMoreCommand) {
-//
-//        if (onRefreshCommand != null) {
-//            layout.setOnRefreshListener(onRefreshCommand);
-//        }
-//
-//        if (onLoadMoreCommand != null) {
-//            layout.setOnLoadMoreListener(onLoadMoreCommand);
-//        }
-//
-//    }
-//
-
-
-    @BindingAdapter({"render"})
+    @BindingAdapter("render")
     public static void loadHtml(WebView webView, final String html) {
         if (!TextUtils.isEmpty(html)) {
             webView.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null);

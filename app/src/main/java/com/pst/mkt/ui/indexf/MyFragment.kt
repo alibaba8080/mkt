@@ -9,6 +9,7 @@ import com.pst.basebata.base.BaseFragment
 import com.pst.basebata.base.BaseViewModel
 import com.pst.mkt.R
 import com.pst.mkt.databinding.FragmentTabBar2Binding
+import com.pst.mkt.util.ToastUtils
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 
@@ -40,7 +41,7 @@ class MyFragment : BaseFragment<FragmentTabBar2Binding, BaseViewModel>() {
                 }
             })
             RxRequest.request(create,{
-
+                ToastUtils.normal(it.toString())
             })
 
         })

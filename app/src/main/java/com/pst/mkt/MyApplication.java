@@ -1,6 +1,7 @@
 package com.pst.mkt;
 
 import android.app.Application;
+import com.pst.basebata.util.Toasty;
 import skin.support.SkinCompatManager;
 import skin.support.app.SkinCardViewInflater;
 import skin.support.design.app.SkinMaterialViewInflater;
@@ -19,9 +20,16 @@ import skin.support.design.app.SkinMaterialViewInflater;
  */
 
 public class MyApplication extends Application {
+    private static MyApplication sInstance;
+
+    public static MyApplication getInstance() {
+        return sInstance;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
+        sInstance=this;
+        Toasty.Config.getInstance().setTextSize(14).allowQueue(false).apply();
         SkinCompatManager.withoutActivity(this)                         // 基础控件换肤初始化
                 .addInflater(new SkinMaterialViewInflater())            // material design 控件换肤初始化[可选]
                 .addInflater(new SkinCardViewInflater())                // CardView v7 控件换肤初始化[可选]

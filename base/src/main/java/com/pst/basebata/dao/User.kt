@@ -29,13 +29,6 @@ data class User @Ignore constructor(
     constructor() : this(0, "")
 }
 
-//@Entity
-//class Gender @Ignore constructor(@PrimaryKey(autoGenerate = true)
-//                                 var genderId: Int = 0,
-//                                 var type: String = "") {
-//
-//
-//}
 
 
 

@@ -24,7 +24,7 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.pst.mkt.R;
 import com.pst.mkt.util.GDMapUtil;
-import com.pst.mkt.util.MyToast;
+import com.pst.mkt.util.ToastUtils;
 
 
 /**
@@ -146,7 +146,7 @@ public class SelectPositionActiviy extends Activity implements AMap.InfoWindowAd
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyToast.showToast(
+                ToastUtils.normal(
                         "地址："+ tv_name.getText().toString()
                         +"\n维度："+centerMarker.getPosition().latitude
                         +"\n经度："+centerMarker.getPosition().longitude);
